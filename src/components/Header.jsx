@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -33,9 +33,7 @@ const socials = [
 ];
 
 const Header = () => {
-
   const handleClick = (anchor) => {
-    
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
@@ -46,9 +44,29 @@ const Header = () => {
     }
   };
 
+  const navRef = useRef();
+  const [scrolling, setScrolling] = useState(false);
+
+  
+  var oldScrollY = window.scrollY;
+
+  // var directionText = document.getElementById('direction');
+
+  window.onscroll = function (e) {
+    if (oldScrollY < window.scrollY) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+    oldScrollY = window.scrollY;
+  };
+
+
+
   return (
     <Box
-      position="fixed"
+      ref={navRef}
+      position={scrolling ? "fixed" : "relative"}
       top={0}
       left={0}
       right={0}
@@ -68,18 +86,18 @@ const Header = () => {
           <nav>
             {/* Add social media links based on the `socials` data */}
             {socials.map((iconName, index) => (
-              <a style={{margin:"0 5px"}} key={index} href={iconName.url}>
+              <a style={{ margin: "0 5px" }} key={index} href={iconName.url}>
                 <FontAwesomeIcon icon={iconName.icon} size={"2x"} />
               </a>
-             ))}
+            ))}
           </nav>
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
-              <a onClick={()=>handleClick("projects")}  href="#projects">
+              <a onClick={() => handleClick("projects")} href="#projects">
                 Projects
               </a>
-              <a onClick={()=>handleClick("contactme")} href="#contact-me">
+              <a onClick={() => handleClick("contactme")} href="#contact-me">
                 Contact me
               </a>
             </HStack>

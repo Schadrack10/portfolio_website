@@ -12,6 +12,10 @@ const UseSubmit = () => {
   const [response, setResponse] = useState(null);
 
   const submit = async (url, data) => {
+    
+    //basic test
+    // alert("submitting " + data.firstName + " 's " + " information")
+
     const random = Math.random();
     setLoading(true);
     try {

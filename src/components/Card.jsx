@@ -36,8 +36,9 @@ const Card = ({ title, description, imageSrc }) => {
           <Box
             style={{
               flex: 1,
-               display:"flex",
-               alignItems:"flex-start"
+              mb:2,
+              display: "flex",
+              alignItems: "flex-start",
             }}
           >
             <Heading as="h6" size="md" color="#000">
@@ -47,23 +48,23 @@ const Card = ({ title, description, imageSrc }) => {
           <Box
             style={{
               flex: 2,
-               display:"flex",
-               alignItems:"flex-start",
+              display: "flex",
+              alignItems: "flex-start",
             }}
           >
-            <Text fontSize={14} color="#000">
-              {description}
-            </Text>
+            <Text fontSize={13.5}color="#888">{description}</Text>
           </Box>
           <Box
             style={{
               flex: 1,
-               display:"flex",
-               alignItems:"flex-end"
+              display: "flex",
+              alignItems: "flex-end",
             }}
           >
             <HStack>
-              <Text color="#000">see more</Text>
+              <Text fontSize={16} fontWeight={"light"} color="#000">
+                see more
+              </Text>
               <FontAwesomeIcon color="#000" icon={faArrowRight} size={"1x"} />
             </HStack>
           </Box>

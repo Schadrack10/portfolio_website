@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -29,12 +29,11 @@ const LandingSection = () => {
       comment: "",
     },
     onSubmit: (values) => {
-      const {firstName} = values;
-      
-      console.log(`testing values ${firstName}`)
+      const { firstName } = values;
+
+      console.log(`testing values ${firstName}`);
 
       submit("https://mylink", values);
-
     },
 
     validationSchema: Yup.object({
@@ -46,24 +45,19 @@ const LandingSection = () => {
         .required("Required"),
       comment: Yup.string()
         .min(25, "Must be 25 characters or less")
-        .required("Required")
+        .required("Required"),
     }),
   });
 
-useEffect(()=>{
-  if(response){
-    onOpen(response.type, response.message)
+  useEffect(() => {
+    if (response) {
+      onOpen(response.type, response.message);
 
-    if(response.type === 'success'){
-      formik.resetForm()
+      if (response.type === "success") {
+        formik.resetForm();
+      }
     }
-  }
-  
-},[response])
-
-
-
-
+  }, [response]);
 
   return (
     <FullScreenSection
@@ -79,18 +73,20 @@ useEffect(()=>{
         <Box p={6} rounded="md" w="100%">
           <form onSubmit={formik.handleSubmit}>
             <VStack spacing={4}>
-            <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
+              <FormControl
+                isInvalid={formik.errors.firstName && formik.touched.firstName}
+              >
                 <FormLabel htmlFor="firstName">Name</FormLabel>
                 <Input
                   {...formik.getFieldProps("firstName")}
                   id="firstName"
                   name="firstName"
                 />
-                <FormErrorMessage>
-                {formik.errors.firstName}
-                </FormErrorMessage>
+                <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={formik.errors.email && formik.touched.email}>
+              <FormControl
+                isInvalid={formik.errors.email && formik.touched.email}
+              >
                 <FormLabel htmlFor="email">Email Address</FormLabel>
                 <Input
                   {...formik.getFieldProps("email")}
@@ -98,11 +94,11 @@ useEffect(()=>{
                   name="email"
                   type="email"
                 />
-                <FormErrorMessage>
-                  {formik.errors.email}
-                </FormErrorMessage>
+                <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={formik.errors.type && formik.touched.type}>
+              <FormControl
+                isInvalid={formik.errors.type && formik.touched.type}
+              >
                 <FormLabel htmlFor="type">Type of enquiry</FormLabel>
                 <Select id="type" name="type" {...formik.getFieldProps("type")}>
                   <option value="hireMe">Freelance project proposal</option>
@@ -112,7 +108,9 @@ useEffect(()=>{
                   <option value="other">Other</option>
                 </Select>
               </FormControl>
-              <FormControl isInvalid={formik.errors.comment && formik.touched.comment}>
+              <FormControl
+                isInvalid={formik.errors.comment && formik.touched.comment}
+              >
                 <FormLabel htmlFor="comment">Your message</FormLabel>
                 <Textarea
                   {...formik.getFieldProps("comment")}
@@ -120,9 +118,7 @@ useEffect(()=>{
                   name="comment"
                   height={250}
                 />
-                <FormErrorMessage>
-                  {formik.errors.comment}
-                </FormErrorMessage>
+                <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
               </FormControl>
               <Button type="submit" colorScheme="purple" width="full">
                 Submit

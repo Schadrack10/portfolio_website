@@ -44,29 +44,26 @@ const Header = () => {
     }
   };
 
-  //scrolling effect 
+  //scrolling effect
 
   const navRef = useRef();
   const [scrolling, setScrolling] = useState(false);
-  const [oldScrollY , setOldScrollY] =  useState(window.scrollY)
+  const [oldScrollY, setOldScrollY] = useState(window.scrollY);
   // var oldScrollY = window.scrollY;
 
   window.onscroll = () => {
     if (oldScrollY < window.scrollY) {
       setScrolling(true);
-      navRef.current.transition = "1s ease-in";
+      // navRef.current.transition = "1s ease-in";
     } else {
       setScrolling(false);
-      navRef.current.transition = "1s ease-in";
+      // navRef.current.transition = "1s ease-in";
     }
-    setOldScrollY(window.scrollY)
+    setOldScrollY(window.scrollY);
   };
 
   useEffect(() => {
-   
     navRef.current.transition = "1s ease-in";
-    
-
   }, [scrolling]);
 
   return (
